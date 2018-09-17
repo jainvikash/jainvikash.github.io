@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Responsive Website</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="screen">
+	<script src="js/modernizr-custom.js"></script> <!-- detect whether a browser supports a specific feature or not -->
+	<script src="js/respond.js"></script>		 <!-- It enables responsive design in browsers those don´t support CSS Media Queries -->
+	<script src="js/prefixfree.min.js"></script> <!-- Prefix Free to work in all browsers -->
+	<script src="js/main.js"></script> <!-- my js file -->	
+</head>
+
+<body onresize="myFunction()">
+
+<header>
+	<a href="index.html"><img src="images/logo.jpg" alt="Responsive" /></a>
+	<nav id="menu-items">
+		<ul>
+			<li><a href="sample.html">Blog</a></li>
+			<li><a href="sample.html">Fonts</a></li>
+			<li><a href="sample.html">Templates</a></li>
+			<li><a href="sample.html">Icons</a></li>			
+			<li><a href="sample.html">Wordpress</a></li>
+		</ul>
+	</nav>
+	<div id="hemburger_menu" class="toggleHide" onClick="hamburger()">
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>
+	<div id="cross" class="toggleHide" onClick="closeit()">x</div>
+</header>
+
+
+<!-- introduction -->
+<section class="introduction coming-soon">
+	<h4>Coming Soon...</span></h4>
+</section><!-- /introduction -->
+
+
+<footer>
+	<h6 class="hidden-element">Page footer</h6>
+	<ul>
+		<li><a href="sample.html">Home</a></li>
+		<li><a href="sample.html">About</a></li>
+		<li><a href="sample.html">Archive</a></li>
+		<li><a href="sample.html">Contact</a></li>
+	</ul>
+	<img src="images/social-media-icons.jpg" />
+	<p class="copy">Copyright © Responsive. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

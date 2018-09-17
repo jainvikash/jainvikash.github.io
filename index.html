@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Responsive Website</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="screen">
+	<script src="js/modernizr-custom.js"></script> <!-- detect whether a browser supports a specific feature or not -->
+	<script src="js/respond.js"></script>		 <!-- It enables responsive design in browsers those don´t support CSS Media Queries -->
+	<script src="js/prefixfree.min.js"></script> <!-- PrefixFree will add prefix to classes to work in all browsers -->
+	<script src="js/main.js"></script> <!-- my js file -->	
+</head>
+
+<body onresize="myFunction()">
+
+	<header>
+		<a href="index.html"><img class="logo" src="images/logo.jpg" alt="Responsive" /></a>
+		<nav id="menu-items">
+			<ul>
+				<li><a href="sample.html">Blog</a></li>
+				<li><a href="sample.html">Fonts</a></li>
+				<li><a href="sample.html">Templates</a></li>
+				<li><a href="sample.html">Icons</a></li>			
+				<li><a href="sample.html">Wordpress</a></li>
+			</ul>
+		</nav>
+		<div id="hemburger_menu" class="toggleHide" onClick="hamburger()">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<div id="cross" class="toggleHide" onClick="closeit()">x</div>
+	</header>
+
+
+	<!-- Hero Header -->
+	<section class="container-hero">
+		<div class="inside flex-container row column-reverse">
+			<article class="text-hero">
+				<h3>Premium Design Graphic Resources Center</h3>
+				<p>We Offer high quality design resources such as fonts, icons sets, web templates, backgrounds, and much more for FREE!</p>
+				<p>Join our mailing list & receive a new freebie everyday!</p>
+				<form action="action_page.php" target="_blank" method="post">
+					<input type="email" name="email" placeholder="Email address.." /><input type="submit" value="Sign Up">
+				</form>
+			</article>
+			<div class="spacer"></div>
+			<div class="hero-image">
+				<img src="images/slider-img.png" alt="Laptop, tablet, mobile image">
+			</div>
+		</div>
+	</section><!-- /Hero Header -->
+
+
+	<!-- introduction -->
+	<section class="introduction">
+		<h4>Public and private organizations around the world choose Us, services, and software solutions to help them achieve unique business goals, improve competitiveness, and better serve customers and citizens. <span>Using open, standards-based architectures, you can streamline your IT operations, increase end-user productivity, and keep your data secure.</span></h4>
+	</section><!-- /introduction -->
+
+
+	<!-- Fresh freebies -->
+	<section class="section-fresh-freebies">
+		<h2 class="header-wgreen-vbar">Fresh freebies<span>Download Till Your Heart's Content!</span></h6>
+		<figure>
+			<a href="sample.html">
+				<img src="images/grid-pic1.jpg" alt="computer" />
+				<figcaption>Simply random text</figcaption>
+			</a>
+		</figure>
+		<figure>
+			<a href="sample.html">
+				<img src="images/grid-pic2.jpg" alt="social" />
+				<figcaption>Classical literature</figcaption>
+			</a>
+		</figure>
+		<figure>
+			<a href="sample.html">
+				<img src="images/grid-pic3.jpg" alt="windows" />
+				<figcaption>Variations of passages</figcaption>
+			</a>
+		</figure>
+		<div class="clear"></div>
+		<a href="sample.html" class="more-freebies">more freebies</a>
+	</section><!-- /Fresh freebies -->
+
+	<div class="clear"></div>
+
+	<section class="cta">
+		<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+	</section>
+
+
+	<!-- Latest News -->
+	<section class="news">
+		<h2 class="header-wgreen-vbar">Latest News<span>Find out What's Going On</span></h6>
+		<article>
+			<img src="images/artpic1.png" alt="computer" />
+			<h3>Lorem ipsum dolor sit amet adipisicing elit?</h3>
+			<p>post on July 28,2013 <span></span> James Reed <span></span> Technology</p>
+			<p>consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+			<a href="sample.html">Read More</a>
+		</article>
+		<article>
+			<img src="images/artpic2.png" alt="author" />
+			<h3>sed do eiusmod tempor incididunt ut labo</h3>
+			<p>post on July 28,2013 <span></span> James Reed <span></span> Technology</p>
+			<p>consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+			<a href="sample.html">Read More</a>
+		</article>
+		<article>
+			<img src="images/artpic3.png" alt="star" />
+			<h3>incididunt ut labore et dolore magna</h3>
+			<p>post on July 28,2013 <span></span> James Reed <span></span> Technology</p>
+			<p>consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+			<a href="sample.html">Read More</a>
+		</article>
+	</section><!-- /Latest News -->
+
+	<footer>
+		<h6 class="hidden-element">Page footer</h6>
+		<ul>
+			<li><a href="sample.html">Home</a></li>
+			<li><a href="sample.html">About</a></li>
+			<li><a href="sample.html">Archive</a></li>
+			<li><a href="sample.html">Contact</a></li>
+		</ul>
+		<img src="images/social-media-icons.jpg" />
+		<p class="copy">Copyright © Responsive. All Rights Reserved.</p>
+	</footer>
+
+</body>
+</html>
