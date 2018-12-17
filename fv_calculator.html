@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+<head>
+    <title>Future Value Calculator created by Vikash</title>
+	<meta charset="utf-8">
+	<!--
+		Created by: Vikash Jain
+		Tools Used:	HTML, CSS, JavaScript
+		DOC:		Dec-2018
+	-->
+<style>
+	body{
+		margin: 0;
+		padding: 0;
+		font-family: Cambria, Times, "Times New Roman", "serif";
+		font-size: 18px;
+		background: #f2f2f2;
+	}
+	.main{
+		margin: 0 auto;
+		text-align: center;
+		border: 0 solid;
+		padding-top: 50px;
+		border: 0 solid red;
+		min-width: 900px;
+		width: 65%;
+	}
+	.main #time{
+		margin: 10px 0 50px 0;
+		border: 1px solid;
+		width: 80px;
+	}
+	.main .one span{
+		font-size: 14px;
+	}
+	table{
+		width: 100%;
+		margin: 0 auto;
+	}
+	table tr td{
+		text-align: center;
+		border: 1px solid;
+	}
+	table tr td,table tr th{
+		border: 1px solid;
+		padding: 10px;
+		font-size: 15px;
+	}
+	table tr th{
+		background: #ccc;
+		padding: 8px 0;
+		color: #555;
+	}
+	#display {
+		border: 1px solid #000;
+		padding: 5px;
+		margin-top: 5px;
+		background: #aaa;
+		font-weight: bold;
+		font-size: 14px;
+		float: right;
+		width: 343px;
+	}
+	#txtFutureValue{
+		background: #e2e2e2;
+	}
+	input[type=text]{
+		padding: 4px;
+		border: 0;
+		text-align: center;
+	}
+	input[type=button]{
+		background-color: #4CAF50;
+		border: 0;
+		width: 140px;
+		margin: 0;
+		padding: 4px;
+		color: #fff;
+		font-weight: bold;
+	}
+	input[type=button]:hover,.btn_remove:hover{
+		background-color: #ffc107 !important;
+		color: #555 !important;
+	}
+	.btn_remove{
+		background-color: red !important;
+		color: #fff !important;
+	}
+	#btn_calculateAllFV{
+		padding: 20px;
+		margin-top: 30px;
+		font-size: 20px;
+		color: #fff;
+		background-color: #007bff;
+		border-color: #007bff;
+		border-radius: 10px;
+	}	
+</style>
+	
+<script>
+
+	function twoFunction(){
+		validation();
+		//calculateFV();
+		calculate_ROR_FV();
+	}
+	
+	function calculate_ROR_FV() {
+
+		var txtInvestment = document.getElementById("txtInvestment").value;
+		var txtPresentAmount = document.getElementById("txtPresentAmount").value;
+		var txtRor = document.getElementById("txtRor").value;
+		var time = document.getElementById("time").value;
+
+		var rate = txtRor/100;
+		var total = 1 + rate;
+		var power = time;
+		var fv = Math.ceil(txtPresentAmount*(Math.pow(total,power)));
+
+		document.getElementById("txtFutureValue").value = fv;
+		
+		calculateAllFV();
+	}
+	
+	function calculateFV() {
+
+		var txtInvestment = document.getElementById("txtInvestment").value;
+		var txtPresentAmount = document.getElementById("txtPresentAmount").value;
+		var txtRor = document.getElementById("txtRor").value;
+		var time = document.getElementById("time").value;
+
+		var rate = txtRor/100;
+		var total = 1 + rate;
+		var power = time;
+		var fv = Math.ceil(txtPresentAmount*(Math.pow(total,power)));
+
+		document.getElementById("txtFutureValue").value = fv;
+
+		addRow(txtInvestment, txtPresentAmount, txtRor, fv);
+		calculateAllFV();
+	}
+
+	function addRow(investmentName, amount, ror, f_value) {
+
+		txtInvestment.value = "";
+		txtPresentAmount.value = "";
+		txtRor.value = "";
+		txtFutureValue.value = "";
+
+		//Get the reference of the Table's TBODY element.
+		var tBody = document.getElementById("tableSaving");
+		//var tBody = document.getElementById("tableSaving").getElementsByTagName("TBODY")[0];
+
+		//Add Row.
+		var row = tBody.insertRow(-1);
+
+		//TD position# 1. Add Policy Name cell.
+		var cell = row.insertCell(-1);
+		cell.innerHTML = investmentName;
+
+		//TD position# 2. Add Amount cell.
+		cell = row.insertCell(-1);
+		cell.innerHTML = amount;
+
+		//TD position# 3. Add ROR cell.
+		cell = row.insertCell(-1);
+		cell.innerHTML = ror;
+
+		//TD position# 5. Add Future Value cell.
+		cell = row.insertCell(-1);
+		cell.innerHTML = f_value;
+		
+		//TD position# 4. Add Button cell.
+		cell = row.insertCell(-1);
+		var btnRemove = document.createElement("INPUT");			
+		btnRemove.type = "button";
+		btnRemove.value = "Remove";
+		btnRemove.className = "btn_remove";
+		btnRemove.setAttribute("onclick", "removeRow(this);");
+		cell.appendChild(btnRemove);
+
+	}
+
+	function removeRow(button) {
+		var row = button.parentNode.parentNode;
+		if (confirm("Do you want to delete Row?")) { 
+			var table = document.getElementById("tableSaving");
+			table.deleteRow(row.rowIndex);
+		}
+		calculateAllFV();
+	}
+
+	function calculateAllFV(){
+		var table = document.getElementById("tableSaving");
+		var num = table.rows.length;
+		var sum = 0;
+
+		for(var i=2; i < num; i++){		//	for(var i=1; i < num-1; i++){
+
+			for(var j=0; j<5; j++){
+				if(j == 3){
+					var singleFV = Number(table.rows[i].cells[j].innerHTML);
+					sum += singleFV;
+				}
+			}
+		}
+		document.getElementById("display").innerHTML = sum;
+	}
+	
+	function clearTime(){
+		document.getElementById("time").value = "";			
+	}
+
+	function validation(){
+		var time = document.getElementById("time").value;
+		var txtPresentAmount = document.getElementById("txtPresentAmount").value;
+		var txtRor = document.getElementById("txtRor").value;
+
+		if(isNaN(time)||isNaN(txtPresentAmount)||isNaN(txtRor)){
+			alert("Please enter number only");
+		}
+	}
+</script>
+	
+</head>
+	
+<body>
+	
+	<div class="main">
+		
+		<label class="one">Please Enter Future Date (years)</label><br>
+		<input type="text" id="time" maxlength="4" placeholder="Enter Years" onchange="validation()">
+		<button onClick="clearTime()">Clear Time</button>
+	
+		<table id="tableSaving" cellpadding="0" cellspacing="0" border="1">
+			<thead>
+				<tr>
+					<th>Policy Name</th>
+					<th>Amount</th>
+					<th>RoR</th>
+					<th>Future Value</th>
+					<th>Add/Remove Row</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+			<tfoot>
+				<tr>
+					<td><input type="text" id="txtInvestment" placeholder="Enter Invest Name" /></td>
+					<td><input type="text" id="txtPresentAmount" maxlength="10" onchange="validation()" placeholder="Enter Present Value" /></td>
+					<td><input type="text" id="txtRor" maxlength="3" onBlur="twoFunction();" placeholder="Enter Rate of Return" /></td>
+					<td><input type="text" id="txtFutureValue" onBlur="calculateAllFV()" readonly="readonly" /></td>
+					<td><input type="button" onClick="calculateFV()" value="Add Row" /></td>
+				</tr>
+			</tfoot>
+		</table>
+		
+	<div id="display">Sum of all Future Value</div>
+		
+		
+	</div><!-- /main -->
+	
+</body>
+</html>
