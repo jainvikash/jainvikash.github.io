@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+	<title>Common Purpose List | JavaScipt</title> 
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="refresh" content="">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<style type="text/css">
+		.container{
+			border: 2px solid #e2e2e2;
+			padding: 30px;
+			position: relative;
+		}
+		.jumbotron {
+			padding: 2rem;
+		}
+		.jumbotron h2 {
+			font-size: 1.6rem;
+		}
+		.jumbotron input[type=text]{
+			width: 500px;
+		}
+		.myform{
+			width: 500px;
+			float: right;
+			position: absolute;
+			right: 30px;
+			margin-top: 40px;
+		}
+	</style>
+</head>
+	
+<body> 
+	<div class="container">
+	  <h1>Household List (Plain JavaScript)</h1>
+	  <br>
+	  <div class="jumbotron">
+	    <h2>Add new Item in the given list</h2>
+		<div class="input-group mb-3">
+		  <input type="text" id="inputItem" class="form-control" placeholder="Enter new List Item" aria-describedby="basic-addon2" />
+		  <div class="input-group-append">
+		    <button id="btn_newITem" class="btn btn-outline-secondary" type="button">Add</button>
+		  </div>
+		</div>
+
+		<form class="myform">
+		  <div class="input-group">
+		      <input class="form-control py-2 border-right-0 border" id="filter" type="search" placeholder="Search in List Items">
+		      <div class="input-group-append">
+		          <div class="input-group-text" id="btnGroupAddon2"><i class="fa fa-search"></i></div>
+		      </div>
+		  </div>
+		</form>
+	</div>
+
+	<br>
+
+	<div class="container">
+	  <ul class="list-group">
+	    <li class="list-group-item">Chair <button class="btn btn-danger btn-sm float-right delete">X</button></li>
+	    <li class="list-group-item">Bed <button class="btn btn-danger btn-sm float-right delete">X</button></li>
+	    <li class="list-group-item">Book <button class="btn btn-danger btn-sm float-right delete">X</button></li>
+	  </ul>
+	</div>
+
+	<script>
+
+		var submit = document.getElementById("btn_newITem");
+		var listGroup = document.getElementsByClassName("list-group")[0];
+		var filter = document.getElementById("filter");
+
+		submit.addEventListener("click", addNewItem);
+		filter.addEventListener("keyup", filterItems);
+		filter.addEventListener("blur", searchDone);
+
+		function addNewItem(){
+			var inputValue = document.getElementById("inputItem").value;
+			var li = document.createElement("li")
+			var text = document.createTextNode(inputValue);
+			li.appendChild(text);
+			li.className="list-group-item";
+
+			//create button
+			var button = document.createElement("button");
+			button.className = "btn btn-danger btn-sm float-right delete";
+			button.appendChild(document.createTextNode("X"));
+			li.appendChild(button)
+
+			listGroup.appendChild(li);
+
+			document.getElementById("inputItem").value = "";
+		}
+
+		//removal of List item
+		listGroup.addEventListener("click", removeListItem)
+
+		function removeListItem(e){
+			if(e.target.classList.contains('delete')){
+				var li = e.target.parentNode;
+				listGroup.removeChild(li);
+			}
+		}
+
+		function filterItems(e){
+			var text = e.target.value.toLowerCase();
+			var items = listGroup.getElementsByTagName('li');
+
+			Array.from(items).forEach(function(item){
+				var itemName = item.firstChild.textContent;
+				if(itemName.toLowerCase().indexOf(text) != -1){
+					item.style.display = "block";
+				}
+				else
+				{
+					item.style.display = "none";
+				}
+			});
+		}
+
+		function searchDone(e){
+			document.getElementById("filter").value = "";
+		}
+
+	</script>
+
+</body> 
+</html>
